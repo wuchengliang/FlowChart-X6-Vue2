@@ -174,6 +174,7 @@ export const outerPorts = {
     },
   ],
 };
+
 export const outerPorts8 = {
   groups: {
     left: {
@@ -189,6 +190,26 @@ export const outerPorts8 = {
       args: {
         x: "20%",
         y: "60%",
+      },
+      attrs: { circle },
+    },
+  ],
+}
+export const outerPorts7 = {
+  groups: {
+    left: {
+      position: {
+        name: "absolute",
+      },
+    },
+  },
+  items: [
+    {
+      id: "port4",
+      group: "left",
+      args: {
+        x: "40%",
+        y: "45%",
       },
       attrs: { circle },
     },

@@ -1,172 +1,65 @@
 <template>
   <div class="bar">
-    <el-tooltip
-      class="item"
-      effect="dark"
-      content="清除 (Cmd + D)"
-      placement="bottom"
-    >
-      <el-button
-        name="delete"
-        @click="handleClick"
-        class="item-space"
-        size="small"
-      >
+    <el-tooltip class="item" effect="dark" content="清除 (Cmd + D)" placement="bottom">
+      <el-button name="delete" @click="handleClick" class="item-space" size="small">
         delete
       </el-button>
     </el-tooltip>
 
-    <el-tooltip
-      class="item"
-      effect="dark"
-      content="撤销 (Cmd + Z)"
-      placement="bottom"
-    >
-      <el-button
-        :disabled="!canUndo"
-        name="undo"
-        @click="handleClick"
-        class="item-space"
-        size="small"
-      >
+    <el-tooltip class="item" effect="dark" content="撤销 (Cmd + Z)" placement="bottom">
+      <el-button :disabled="!canUndo" name="undo" @click="handleClick" class="item-space" size="small">
         undo
       </el-button>
     </el-tooltip>
 
-    <el-tooltip
-      class="item"
-      effect="dark"
-      content="Redo (Cmd + Shift + Z)"
-      placement="bottom"
-    >
-      <el-button
-        :disabled="!canRedo"
-        name="redo"
-        @click="handleClick"
-        class="item-space"
-        size="small"
-      >
+    <el-tooltip class="item" effect="dark" content="Redo (Cmd + Shift + Z)" placement="bottom">
+      <el-button :disabled="!canRedo" name="redo" @click="handleClick" class="item-space" size="small">
         redo
       </el-button>
     </el-tooltip>
 
-    <el-tooltip
-      class="item"
-      effect="dark"
-      content="复制 (Cmd + Shift + Z)"
-      placement="bottom"
-    >
-      <el-button
-        name="copy"
-        @click="handleClick"
-        class="item-space"
-        size="small"
-      >
+    <el-tooltip class="item" effect="dark" content="复制 (Cmd + Shift + Z)" placement="bottom">
+      <el-button name="copy" @click="handleClick" class="item-space" size="small">
         copy
       </el-button>
     </el-tooltip>
 
-    <el-tooltip
-      class="item"
-      effect="dark"
-      content="剪切 (Cmd + X)"
-      placement="bottom"
-    >
-      <el-button
-        name="cut"
-        @click="handleClick"
-        class="item-space"
-        size="small"
-      >
+    <el-tooltip class="item" effect="dark" content="剪切 (Cmd + X)" placement="bottom">
+      <el-button name="cut" @click="handleClick" class="item-space" size="small">
         cut
       </el-button>
     </el-tooltip>
 
-    <el-tooltip
-      class="item"
-      effect="dark"
-      content="粘贴 (Cmd + V)"
-      placement="bottom"
-    >
-      <el-button
-        name="paste"
-        @click="handleClick"
-        class="item-space"
-        size="small"
-      >
+    <el-tooltip class="item" effect="dark" content="粘贴 (Cmd + V)" placement="bottom">
+      <el-button name="paste" @click="handleClick" class="item-space" size="small">
         paste
       </el-button>
     </el-tooltip>
 
-    <el-tooltip
-      class="item"
-      effect="dark"
-      content="保存PNG (Cmd + S)"
-      placement="bottom"
-    >
-      <el-button
-        name="savePNG"
-        @click="handleClick"
-        class="item-space"
-        size="small"
-      >
+    <el-tooltip class="item" effect="dark" content="保存PNG (Cmd + S)" placement="bottom">
+      <el-button name="savePNG" @click="handleClick" class="item-space" size="small">
         savePNG
       </el-button>
     </el-tooltip>
 
-    <el-tooltip
-      class="item"
-      effect="dark"
-      content="保存SVG (Cmd + S)"
-      placement="bottom"
-    >
-      <el-button
-        name="saveSVG"
-        @click="handleClick"
-        class="item-space"
-        size="small"
-      >
+    <el-tooltip class="item" effect="dark" content="保存SVG (Cmd + S)" placement="bottom">
+      <el-button name="saveSVG" @click="handleClick" class="item-space" size="small">
         saveSVG
       </el-button>
     </el-tooltip>
 
-    <el-tooltip
-      class="item"
-      effect="dark"
-      content="打印 (Cmd + P)"
-      placement="bottom"
-    >
-      <el-button
-        name="print"
-        @click="handleClick"
-        class="item-space"
-        size="small"
-      >
+    <el-tooltip class="item" effect="dark" content="打印 (Cmd + P)" placement="bottom">
+      <el-button name="print" @click="handleClick" class="item-space" size="small">
         print
       </el-button>
     </el-tooltip>
 
-    <el-tooltip
-      class="item"
-      effect="dark"
-      content="导出 (Cmd + P)"
-      placement="bottom"
-    >
-      <el-button
-        name="toJSON"
-        @click="handleClick"
-        class="item-space"
-        size="small"
-      >
+    <el-tooltip class="item" effect="dark" content="导出 (Cmd + P)" placement="bottom">
+      <el-button name="toJSON" @click="handleClick" class="item-space" size="small">
         toJSON
       </el-button>
     </el-tooltip>
-    <el-button
-      name="create"
-      @click="handleClick"
-      class="item-space"
-      size="small"
-    >
+    <el-button name="create" @click="handleClick" class="item-space" size="small">
       生成流程图
     </el-button>
   </div>
@@ -178,6 +71,7 @@ import {
   customPorts,
   outerPorts,
   outerPorts8,
+  outerPorts7
 } from "../../graph/ports";
 import { DataUri } from "@antv/x6";
 import { getImg, getSongImg } from "@/utils";
@@ -384,6 +278,8 @@ export default {
           height: 140,
           x: 845,
           y: 505,
+          ports: { ...outerPorts7 },
+
         },
         {
           imageUrl: getSongImg("02.png"),
@@ -394,95 +290,104 @@ export default {
           y: 500,
           ports: { ...outerPorts8 },
         },
-        {
-          imageUrl: getSongImg("00-01.png"),
-          id: "9",
-          width: 550,
-          height: 470,
-          x: 220,
-          y: 320,
-        },
-        {
-          imageUrl: getSongImg("00-1.png"),
-          id: "10",
-          width: 530,
-          height: 460,
-          x: 365,
-          y: 288,
-        },
-        {
-          imageUrl: getSongImg("00-02.png"),
-          id: "11",
-          width: 140,
-          height: 150,
-          x: 810,
-          y: 492,
-        },
-        {
-          imageUrl: getSongImg("00-02.png"),
-          id: "12",
-          width: 140,
-          height: 150,
-          x: 700,
-          y: 492,
-        },
-        {
-          imageUrl: getSongImg("00-02.png"),
-          id: "13",
-          width: 140,
-          height: 150,
-          x: 1280,
-          y: 525,
-        },
-        {
-          imageUrl: getSongImg("00-02.png"),
-          id: "14",
-          width: 140,
-          height: 150,
-          x: 1150,
-          y: 525,
-        },
-        {
-          imageUrl: getSongImg("00-02.png"),
-          id: "15",
-          width: 140,
-          height: 150,
-          x: 1020,
-          y: 525,
-        },
-        {
-          imageUrl: getSongImg("00-02.png"),
-          id: "16",
-          width: 140,
-          height: 150,
-          x: 895,
-          y: 525,
-        },
-        {
-          imageUrl: getSongImg("00-02.png"),
-          id: "17",
-          width: 140,
-          height: 150,
-          x: 770,
-          y: 525,
-        },
-        {
-          imageUrl: getSongImg("00-02.png"),
-          id: "18",
-          width: 140,
-          height: 150,
-          x: 640,
-          y: 525,
-        },
-        {
-          imageUrl: getSongImg("00-02.png"),
-          id: "19",
-          width: 140,
-          height: 150,
-          x: 510,
-          y: 525,
-        },
+        // {
+        //   imageUrl: getSongImg("00-01.png"),
+        //   id: "9",
+        //   width: 550,
+        //   height: 470,
+        //   x: 220,
+        //   y: 320,
+        // },
+        // {
+        //   imageUrl: getSongImg("00-1.png"),
+        //   id: "10",
+        //   width: 530,
+        //   height: 460,
+        //   x: 365,
+        //   y: 288,
+        // },
+        // {
+        //   imageUrl: getSongImg("00-02.png"),
+        //   id: "11",
+        //   width: 140,
+        //   height: 150,
+        //   x: 810,
+        //   y: 492,
+        // },
+        // {
+        //   imageUrl: getSongImg("00-02.png"),
+        //   id: "12",
+        //   width: 140,
+        //   height: 150,
+        //   x: 700,
+        //   y: 492,
+        // },
+        // {
+        //   imageUrl: getSongImg("00-02.png"),
+        //   id: "13",
+        //   width: 140,
+        //   height: 150,
+        //   x: 1280,
+        //   y: 525,
+        // },
+        // {
+        //   imageUrl: getSongImg("00-02.png"),
+        //   id: "14",
+        //   width: 140,
+        //   height: 150,
+        //   x: 1150,
+        //   y: 525,
+        // },
+        // {
+        //   imageUrl: getSongImg("00-02.png"),
+        //   id: "15",
+        //   width: 140,
+        //   height: 150,
+        //   x: 1020,
+        //   y: 525,
+        // },
+        // {
+        //   imageUrl: getSongImg("00-02.png"),
+        //   id: "16",
+        //   width: 140,
+        //   height: 150,
+        //   x: 895,
+        //   y: 525,
+        // },
+        // {
+        //   imageUrl: getSongImg("00-02.png"),
+        //   id: "17",
+        //   width: 140,
+        //   height: 150,
+        //   x: 770,
+        //   y: 525,
+        // },
+        // {
+        //   imageUrl: getSongImg("00-02.png"),
+        //   id: "18",
+        //   width: 140,
+        //   height: 150,
+        //   x: 640,
+        //   y: 525,
+        // },
+        // {
+        //   imageUrl: getSongImg("00-02.png"),
+        //   id: "19",
+        //   width: 140,
+        //   height: 150,
+        //   x: 510,
+        //   y: 525,
+        // },
       ];
+      const edgeList = [
+        {
+          source: { cell: "8", port: "port4" },
+          target: { cell: '7', port: 'port4' },
+          router: { args: { offset: 32, direction: "H" }, name: "metro" },
+          vertices: [{ x: 836, y: 568 }],
+          id: '8-7',
+
+        },]
       imageList.forEach((item) => {
         graph.addNode({
           shape: "image",
@@ -500,6 +405,28 @@ export default {
           ports: item.ports,
         });
       });
+      edgeList.forEach((item, index) => {
+        graph.addEdge({
+          id: item.id,
+          shape: "double-edge",
+          source: item.source, // 源节点和链接桩 ID
+          target: item.target,
+          router: item.router,
+          attrs: {
+            line: {
+              stroke: "rgba(0, 188, 212)",
+              strokeDasharray: 0,
+              strokeWidth: 3,
+              targetMarker: null,
+            },
+            outline: {
+              stroke: "#456d89",
+              strokeWidth: 7 ,
+            },
+          },
+          vertices: item.vertices,
+        });
+      });
     },
   },
 };
@@ -510,6 +437,7 @@ export default {
   z-index: 99999;
   margin-right: 16px;
 }
+
 .item-space {
   margin-left: 16px;
 }
