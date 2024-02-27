@@ -263,14 +263,14 @@ export default {
           x: 1010,
           y: 480,
         },
-        {
-          imageUrl: getSongImg("04.png"),
-          id: "6",
-          width: 160,
-          height: 190,
-          x: 935,
-          y: 444,
-        },
+        // {
+        //   imageUrl: getSongImg("04.png"),
+        //   id: "6",
+        //   width: 160,
+        //   height: 190,
+        //   x: 935,
+        //   y: 444,
+        // },
         {
           imageUrl: getSongImg("03.png"),
           id: "7",
@@ -388,6 +388,20 @@ export default {
           id: '8-7',
 
         },]
+      const nodeList = [{
+        imageUrl: getSongImg("09.png"),
+        id: "6",
+        width: 160,
+        height: 190,
+        innerWidth: 50,
+        innerHeight: 50,
+        innerPosition: {
+          bottom: 0,
+          right: 0
+        },
+        x: 935,
+        y: 444,
+      },]
       imageList.forEach((item) => {
         graph.addNode({
           shape: "image",
@@ -421,12 +435,32 @@ export default {
             },
             outline: {
               stroke: "#456d89",
-              strokeWidth: 7 ,
+              strokeWidth: 7,
             },
           },
           vertices: item.vertices,
         });
       });
+      nodeList.forEach((item) => {
+        graph.addNode({
+          shape: "flow-animate",
+          id: item.id,
+          width: item.width,
+          height: item.height,
+          x: item.x,
+          y: item.y,
+          ports: item.ports,
+          data: {
+            imageUrl: item.imageUrl,
+            width: item.width,
+            height: item.height,
+            innerWidth: item.innerWidth,
+            innerHeight: item.innerHeight,
+            innerPosition: item.innerPosition,
+          }
+        });
+      })
+
     },
   },
 };
