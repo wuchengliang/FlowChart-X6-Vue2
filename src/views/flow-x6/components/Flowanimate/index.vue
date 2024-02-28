@@ -30,7 +30,7 @@ export default {
     // this.$refs.waterRef.style.height = `${nodeData.innerHeight}px`
     // this.$refs.waterRef.style.bottom = `${nodeData.innerPosition?.bottom}px`
     // this.$refs.waterRef.style.right = `${nodeData.innerPosition?.right}px`
-    console.log('ref',this.$refs.contaninerRef );
+    // console.log('ref',this.$refs.contaninerRef );
     // 外部更新节点数据时，可监听 data的 change事件来获取
     this.curNode.on("change:data", ({ current }) => {
       this.nodeData = current;
@@ -48,26 +48,26 @@ export default {
 <style lang="less" scoped>
 .container {
   position: relative;
-
+  // width:160px;
+  // height: 190px;
   background: url('@/assets/songyang/04.png');
   background-size: 100% 100%;
   // border: 1px solid black;
-  // background-color: #fff;
 }
 // .water {
-//   position: absolute;
-//   bottom: 0;
+//   position: relative;
 // }
 .water::before {
   content: "";
   position: absolute;
-  bottom: 0;
-  left: 0;
+  bottom: 35px;
+  right: 19px;
   height: 0;
+  width: 60px;
   background-color: #00bcd4;
   transition: height 8s ease-in-out;
 }
 .water.active:before {
-  height: 100%;
+  height: 128px;
 }
 </style>

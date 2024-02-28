@@ -402,6 +402,18 @@ export default {
         x: 935,
         y: 444,
       },]
+      const nodeList1 = [{
+        imageUrl: getSongImg("06.png"),
+        id: "4",
+        width: 180,
+        height: 180,
+        x: 1040,
+        y: 455,
+        innerPosition: {
+          bottom: 0,
+          right: 0
+        },
+      },]
       imageList.forEach((item) => {
         graph.addNode({
           shape: "image",
@@ -457,6 +469,7 @@ export default {
             innerWidth: item.innerWidth,
             innerHeight: item.innerHeight,
             innerPosition: item.innerPosition,
+            active:false
           }
         });
       })

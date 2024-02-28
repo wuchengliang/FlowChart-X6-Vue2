@@ -711,24 +711,11 @@ export default class FlowGraph {
       let currentNode = null;
       switch (currentId) {
          case "6":
-           // this.active = [true];
            console.log("changeEdge", changeNode);
            currentNode = changeNode.find((item) => item.id == "6");
            console.log("currentNode", currentNode);
           //  currentNode.data.active = true;
            currentNode.setData({ active:true})
-          //  currentNum.setData({
-          //    number: 8,
-          //  });
-          //  currentEdge.attr("line", {
-          //    stroke: "#1890ff",
-          //    strokeDasharray: 5,
-          //    targetMarker: null,
-          //    style: {
-          //      animation: "ant-line 30s infinite linear",
-          //      lineWidth: 5,
-          //    },
-          //  });
            break;
        }
       // let currentNum = null;

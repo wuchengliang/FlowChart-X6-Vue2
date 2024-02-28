@@ -327,8 +327,27 @@ export const FlowanimateCom = Graph.registerNode("flow-animate", {
         },
       }),
   },
-  ports: { ...basicPorts },
+  // ports: { ...basicPorts },
 });
+// //自定义水管组件
+// export const newFlowanimateCom = Graph.registerNode("flow-animate", {
+//   inherit: "vue-shape",
+//   width: 120,
+//   height: 200,
+//   component: {
+//     // 使用 render函数来创建组件
+//     render: (h) =>
+//       h(Flowanimate, {
+//         on: {
+//           // 监听 FlowNode组件触发的事件，获取传递出来的数据
+//           myEvent: (data) => {
+//             this.handleMyEvent(data);
+//           },
+//         },
+//       }),
+//   },
+//   ports: { ...basicPorts },
+// });
 //自定义按钮组件
 export const FlowButtonCom = Graph.registerNode("flow-button", {
   inherit: "vue-shape",
