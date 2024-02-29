@@ -1,7 +1,10 @@
 <template>
   <div class="container" ref="contaninerRef">
-    <div class="water" ref="waterRef" :class="{ active: nodeData.active }">
-    </div>
+    <div
+      class="water"
+      ref="waterRef"
+      :class="{ active: nodeData.active }"
+    ></div>
   </div>
 </template>
 <script>
@@ -15,27 +18,27 @@ export default {
     };
   },
   mounted() {
-    // background: `url(' + ${require(nodeData.imageUrl)} + '})`, 
+    // background: `url(' + ${require(nodeData.imageUrl)} + '})`,
     //   'background-size': '100% 100%'
     this.curNode = this.getNode();
-    const nodeData = this.curNode?.data ?? {}
+    const nodeData = this.curNode?.data ?? {};
     this.nodeData = nodeData;
-    console.log('nodeDATA',nodeData);
-   
-    this.$refs.contaninerRef.style.width = `${nodeData.width}px`
-    this.$refs.contaninerRef.style.height = `${nodeData.height}px`
+    console.log("nodeDATA", nodeData);
+
+    this.$refs.contaninerRef.style.width = `${nodeData.width}px`;
+    this.$refs.contaninerRef.style.height = `${nodeData.height}px`;
     // this.$refs.contaninerRef.style.background = `url(' + ${nodeData.imageUrl} + '})`,
-    this.$refs.contaninerRef.style.backgroundSize = `100% 100%`,
-    // this.$refs.waterRef.style.width = `${nodeData.innerWidth}px`
-    // this.$refs.waterRef.style.height = `${nodeData.innerHeight}px`
-    // this.$refs.waterRef.style.bottom = `${nodeData.innerPosition?.bottom}px`
-    // this.$refs.waterRef.style.right = `${nodeData.innerPosition?.right}px`
-    // console.log('ref',this.$refs.contaninerRef );
-    // 外部更新节点数据时，可监听 data的 change事件来获取
-    this.curNode.on("change:data", ({ current }) => {
-      this.nodeData = current;
-      console.log("nodeDatafffff", current);
-    });
+    (this.$refs.contaninerRef.style.backgroundSize = `100% 100%`),
+      // this.$refs.waterRef.style.width = `${nodeData.innerWidth}px`
+      // this.$refs.waterRef.style.height = `${nodeData.innerHeight}px`
+      // this.$refs.waterRef.style.bottom = `${nodeData.innerPosition?.bottom}px`
+      // this.$refs.waterRef.style.right = `${nodeData.innerPosition?.right}px`
+      // console.log('ref',this.$refs.contaninerRef );
+      // 外部更新节点数据时，可监听 data的 change事件来获取
+      this.curNode.on("change:data", ({ current }) => {
+        this.nodeData = current;
+        console.log("nodeDatafffff", current);
+      });
   },
   methods: {
     onMyEvent(node) {
@@ -64,7 +67,7 @@ export default {
   right: 19px;
   height: 0;
   width: 60px;
-  background-color: #00bcd4;
+  background-color: rgba(7,149,237);
   transition: height 8s ease-in-out;
 }
 .water.active:before {

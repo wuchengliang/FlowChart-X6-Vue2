@@ -50,24 +50,28 @@ export default {
   position: relative;
   // width:160px;
   // height: 190px;
-  background: url('@/assets/songyang/04.png');
+  background: url('@/assets/songyang/09.png');
   background-size: 100% 100%;
   // border: 1px solid black;
 }
-// .water {
-//   position: relative;
-// }
+.water {
+-webkit-clip-path: polygon(96% 44%, 96% 77%, 10% 77%, 10% 44%);
+clip-path: polygon(96% 44%, 96% 77%, 10% 77%, 10% 44%);
+height: 100%;
+width: 100%;
+}
 .water::before {
   content: "";
   position: absolute;
-  bottom: 35px;
-  right: 19px;
+  bottom: 0px;
+  right: 0px;
   height: 0;
-  width: 60px;
+  width: 100%;
   background-color: #00bcd4;
-  transition: height 8s ease-in-out;
+  
+  transition: height 13s ease-in-out;
 }
 .water.active:before {
-  height: 128px;
+  height: 100%;
 }
 </style>

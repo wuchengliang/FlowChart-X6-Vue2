@@ -201,6 +201,20 @@ export const outerPorts7 = {
       position: {
         name: "absolute",
       },
+      attrs: {
+        circle: {
+          r: 6,
+          magnet: true,
+          stroke: '#31d0c6',
+          strokeWidth: 2,
+          fill: '#fff',
+        },
+      },
+    },
+    right: {
+      position: {
+        name: "absolute",
+      },
     },
   },
   items: [
@@ -210,6 +224,151 @@ export const outerPorts7 = {
       args: {
         x: "40%",
         y: "45%",
+      },
+      attrs: { circle },
+    },
+    {
+      id: "port6",
+      group: "right",
+      args: {
+        x: "56%",
+        y: "54%",
+      },
+      attrs: { circle },
+    },
+    {
+      id: "port7",
+      group: "right",
+      args: {
+        x: "50%",
+        y: "57%",
+      },
+      attrs: { circle },
+    }
+  ],
+}
+export const outerPorts6 = {
+  groups: {
+    left: {
+      position: {
+        name: "absolute",
+      },
+    },
+  },
+  items: [
+    {
+      id: "port4",
+      group: "left",
+      args: {
+        x: "48%",
+        y: "47%",
+      },
+      attrs: { circle },
+    },
+    {
+      id: "port6",
+      group: "left",
+      args: {
+        x: '95%',
+        y: '45%',
+      },
+      attrs: { circle },
+    },
+  ],
+}
+export const outerPorts4 = {
+  groups: {
+    left: {
+      position: {
+        name: "absolute",
+      },
+    },
+  },
+  items: [
+    {
+      id: "port4",
+      group: "left",
+      args: {
+        x: "34%",
+        y: "43%",
+      },
+      attrs: { circle },
+    },
+    {
+      id: "port6",
+      group: "left",
+      args: {
+        x: "70%",
+        y: "45%",
+      },
+      attrs: { circle },
+    },
+  ],
+}
+export const outerPorts1 = {
+  groups: {
+    left: {
+      position: {
+        name: "absolute",
+      },
+    },
+  },
+  items: [
+    {
+      id: "port4",
+      group: "left",
+      args: {
+        x: "7%",
+        y: "63%",
+      },
+      attrs: { circle },
+    },
+    {
+      id: "port6",
+      group: "left",
+      args: {
+        x: "7%",
+        y: "78%",
+      },
+      attrs: { circle },
+    },
+  ],
+}
+export const outerPorts10 = {
+  groups: {
+    right: {
+      position: {
+        name: "absolute",
+      },
+    },
+  },
+  items: [
+    {
+      id: "port4",
+      group: "right",
+      args: {
+        x: "64%",
+        y: "65%",
+      },
+      attrs: { circle },
+    },
+  ],
+}
+export const outerPorts9 = {
+  groups: {
+    right: {
+      position: {
+        name: "absolute",
+      },
+    },
+  },
+  items: [
+    {
+      id: "port4",
+      group: "right",
+      args: {
+        x: "53%",
+        y: "64%",
       },
       attrs: { circle },
     },

@@ -101,7 +101,7 @@ export default class FlowGraph {
               //   },
               // },
               line: {
-                strokeWidth: 6,
+                strokeWidth: 3,
                 stroke: "#00bcd4",
                 // strokeDasharray: 4,
                 style: {
@@ -111,7 +111,7 @@ export default class FlowGraph {
               },
               outline: {
                 stroke: "#456d89",
-                strokeWidth: 10,
+                strokeWidth: 7,
               },
             },
             router: {
@@ -191,7 +191,7 @@ export default class FlowGraph {
         },
       },
     });
-    
+
     if (!flag) {
       // this.graph.centerContent()
       this.graph.hideGrid(); // 返显渲染的时候 隐藏网格
@@ -709,15 +709,132 @@ export default class FlowGraph {
       const changeNode = graph.getNodes();
       const changeEdge = graph.getEdges();
       let currentNode = null;
+      let currentEdge = null
+      const activeIds = ['6','4','1']
+      const activeEdges =['8-7','7-6','4-6','4-1','10-7','9-1']
+      const edgeList = [
+        {
+          source: { cell: "8", port: "port4" },
+          target: { cell: "7", port: "port4" },
+          router: { args: { offset: 32, direction: "H" }, name: "metro" },
+          vertices: [{ x: 836, y: 568 }],
+          id: "8-7",
+        },
+          {
+          source: { cell: "7", port: "port6" },
+          target: { cell: "6", port: "port4" },
+          router: { args: { offset: 32, direction: "H" }, name: "metro" },
+          vertices: [{
+            x: 1004, y: 580
+          },{ x: 1004.6, y: 533.3 }],
+          id: "7-6",
+        },
+          {
+          source: { cell: "6", port: "port6" },
+          target: { cell: "4", port: "port4" },
+          router: { args: { offset: 32, direction: "H" }, name: "metro" },
+          vertices: [{ x: 1088, y: 530 },{ x: 1088, y: 610 },{ x: 1095, y: 610},{x: 1095, y: 533},],
+          id: "4-6",
+        },
+        {
+          source: { cell: "4", port: "port6" },
+          target: { cell: "1", port: "port4" },
+          router: { args: { offset: 32, direction: "H" }, name: "metro" },
+          vertices: [{x: 1190, y: 536},{ x: 1190, y: 625},{ x: 1395, y: 625 },{ x: 1395, y: 568 },],
+          id: "4-1",
+        },
+          {
+          source: { cell: "10", port: "port4" },
+          target: { cell: "7", port: "port7" },
+          router: { args: { offset: 32, direction: "H" }, name: "metro" },
+          vertices: [{x: 950, y: 587}],
+          id: "10-7",
+          attrs: {
+            line: {
+              stroke: "rgba(202, 216, 14)",
+              strokeDasharray: 0,
+              strokeWidth: 1,
+              strokeDasharray: 5,
+              targetMarker: null,
+              style: {
+                animation: "ant-line 30s infinite linear",
+                lineWidth: 5,
+              },
+            },
+            outline: {
+              stroke: "#456d89",
+              strokeWidth: 2,
+            },
+          }
+        },
+        {
+          source: { cell: "9", port: "port4" },
+          target: { cell: "1", port: "port6" },
+          router: { args: { offset: 32, direction: "H" }, name: "metro" },
+          vertices: [{x: 1427.2, y: 620.8}],
+          id: "9-1",
+          attrs: {
+            line: {
+              stroke: "rgba(202, 216, 14)",
+              strokeDasharray: 0,
+              strokeWidth: 1,
+              strokeDasharray: 5,
+              targetMarker: null,
+              style: {
+                animation: "ant-line 30s infinite linear",
+                lineWidth: 5,
+              },
+            },
+            outline: {
+              stroke: "#456d89",
+              strokeWidth: 2,
+            },
+          },
+        },
+      ];
       switch (currentId) {
-         case "6":
-           console.log("changeEdge", changeNode);
-           currentNode = changeNode.find((item) => item.id == "6");
-           console.log("currentNode", currentNode);
-          //  currentNode.data.active = true;
-           currentNode.setData({ active:true})
-           break;
-       }
+        case "0":
+          activeIds.forEach((activeId)=>{
+            currentNode = changeNode.find((item) => item.id == activeId);
+            currentNode.setData({ active: true });
+          })
+          edgeList.forEach((item, index) => {
+            graph.addEdge({
+              id: item.id,
+              shape: "double-edge",
+              source: item.source, // 源节点和链接桩 ID
+              target: item.target,
+              router: item.router,
+              attrs:item.attrs?item.attrs: {
+                line: {
+                  stroke: index<3?"rgba(7,149,237)":"rgba(0, 188, 212)",
+                  strokeDasharray: 0,
+                  strokeWidth: 3,
+                  strokeDasharray: 5,
+                  targetMarker: null,
+                  style: {
+                    animation: "ant-line 30s infinite linear",
+                    lineWidth: 5,
+                  },
+                },
+                outline: {
+                  stroke: "#456d89",
+                  strokeWidth: 7,
+                },
+              },
+              vertices: item.vertices,
+            });
+          });
+          // activeEdges.forEach((edge)=>{
+          //   currentEdge = changeEdge.find((item) => item.id == edge);
+          //   currentEdge.attr("line", {
+          //   stroke: "#1890ff",
+
+          // });
+          // })
+
+          break;
+      }
       // let currentNum = null;
       // let currentNode = null;
       // let currentEdge = null;

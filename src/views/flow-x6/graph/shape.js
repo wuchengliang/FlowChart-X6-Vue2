@@ -3,6 +3,8 @@ import { basicPorts, customPorts } from "./ports";
 import "@antv/x6-vue-shape";
 import VueShapeText from "../../../components/VueShapeText/index";
 import Flowanimate from "../components/Flowanimate";
+import Flowanimate1 from "../components/Flowanimate/animateOne.vue"
+import Flowanimate2 from "../components/Flowanimate/animateTwo.vue"
 import FlowButton from "../components/FlowButton";
 import FlowText from "../components/FlowText";
 import GifComponents from "../components/GifComponents"
@@ -86,7 +88,7 @@ export const FlowChartRect = Graph.registerNode("flow-chart-rect", {
       ],
     },
   ],
-  ports: { ...basicPorts },
+  // ports: { ...basicPorts },
 });
 // 组合节点
 export const FlowChartImageRect = Graph.registerNode("flow-chart-image-rect", {
@@ -330,24 +332,42 @@ export const FlowanimateCom = Graph.registerNode("flow-animate", {
   // ports: { ...basicPorts },
 });
 // //自定义水管组件
-// export const newFlowanimateCom = Graph.registerNode("flow-animate", {
-//   inherit: "vue-shape",
-//   width: 120,
-//   height: 200,
-//   component: {
-//     // 使用 render函数来创建组件
-//     render: (h) =>
-//       h(Flowanimate, {
-//         on: {
-//           // 监听 FlowNode组件触发的事件，获取传递出来的数据
-//           myEvent: (data) => {
-//             this.handleMyEvent(data);
-//           },
-//         },
-//       }),
-//   },
-//   ports: { ...basicPorts },
-// });
+export const FlowanimateComOne = Graph.registerNode("flow-animate-one", {
+  inherit: "vue-shape",
+  width: 120,
+  height: 200,
+  component: {
+    // 使用 render函数来创建组件
+    render: (h) =>
+      h(Flowanimate1, {
+        on: {
+          // 监听 FlowNode组件触发的事件，获取传递出来的数据
+          myEvent: (data) => {
+            this.handleMyEvent(data);
+          },
+        },
+      }),
+  },
+  // ports: { ...basicPorts },
+});
+export const FlowanimateComTwo = Graph.registerNode("flow-animate-two", {
+  inherit: "vue-shape",
+  width: 120,
+  height: 200,
+  component: {
+    // 使用 render函数来创建组件
+    render: (h) =>
+      h(Flowanimate2, {
+        on: {
+          // 监听 FlowNode组件触发的事件，获取传递出来的数据
+          myEvent: (data) => {
+            this.handleMyEvent(data);
+          },
+        },
+      }),
+  },
+  // ports: { ...basicPorts },
+});
 //自定义按钮组件
 export const FlowButtonCom = Graph.registerNode("flow-button", {
   inherit: "vue-shape",
