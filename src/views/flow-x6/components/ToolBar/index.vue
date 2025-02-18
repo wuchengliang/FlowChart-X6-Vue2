@@ -548,18 +548,14 @@ export default {
 
       const textList = [{
         shape: "flow-chart-rect",
-        id: "0",
+        id: "99",
         attrs: {
-          body: {
-            rx: 24,
-            ry: 24,
-          },
           text: {
-            text: "开始按钮",
+            text: "模拟流程",
           },
         },
-        x: 370,
-        y: 360,
+        x: 420,
+        y: 320,
       },{
         shape: "flow-chart-rect",
         id: "33",

@@ -258,6 +258,34 @@ export default class FlowGraph {
         //   },
         // },
       ],
+      getDragNode: node => {
+        let shape = node.store.data.shape
+        let label = node.label
+        switch (label) {
+          case "表格":
+            return this.graph.createNode({
+              shape: "flow-table",
+              attrs: {
+                body: {
+                  fill: "none",
+                  stroke: "none",
+                },
+              },
+            })
+          case "图表":
+              return this.graph.createNode({
+                shape: "flow-chart",
+                attrs: {
+                  body: {
+                    fill: "none",
+                    stroke: "none",
+                  },
+                },
+              })
+          default:
+            return node.clone()
+        }
+      }
     });
     const stencilContainer = document.querySelector("#stencil");
     stencilContainer?.appendChild(this.stencil.container);
@@ -404,6 +432,30 @@ export default class FlowGraph {
         },
       },
     });
+    const r8 = graph.createNode({
+      shape: "flow-chart-rect",
+      attrs: {
+        body: {
+          fill: "none",
+          stroke: "none",
+        },
+        text: {
+          text: "表格",
+        },
+      },
+    })
+    const r9 = graph.createNode({
+      shape: "flow-chart-rect",
+      attrs: {
+        body: {
+          fill: "none",
+          stroke: "none",
+        },
+        text: {
+          text: "图表",
+        },
+      },
+    })
     // 组合节点
     const c1 = graph.createNode({
       shape: "flow-chart-image-rect",
@@ -565,7 +617,7 @@ export default class FlowGraph {
     });
 
     // this.stencil.load([r1, r2, r3, r4, r5], 'basic')
-    this.stencil.load([r1, r2, r3, r4], "basic");
+    this.stencil.load([r1, r2, r3, r4,r8,r9], "basic");
     this.stencil.load(imgNodes, "custom-image");
     this.stencil.load(syimgNodes, "sy-image");
     this.stencil.load([r5, r6, r7], "combination");
@@ -709,9 +761,9 @@ export default class FlowGraph {
       const changeNode = graph.getNodes();
       const changeEdge = graph.getEdges();
       let currentNode = null;
-      let currentEdge = null
-      const activeIds = ['6','4','1']
-      const activeEdges =['8-7','7-6','4-6','4-1','10-7','9-1']
+      let currentEdge = null;
+      const activeIds = ["6", "4", "1"];
+      const activeEdges = ["8-7", "7-6", "4-6", "4-1", "10-7", "9-1"];
       const edgeList = [
         {
           source: { cell: "8", port: "port4" },
@@ -720,119 +772,128 @@ export default class FlowGraph {
           vertices: [{ x: 836, y: 568 }],
           id: "8-7",
         },
-          {
+        {
           source: { cell: "7", port: "port6" },
           target: { cell: "6", port: "port4" },
           router: { args: { offset: 32, direction: "H" }, name: "metro" },
-          vertices: [{
-            x: 1004, y: 580
-          },{ x: 1004.6, y: 533.3 }],
+          vertices: [
+            {
+              x: 1004,
+              y: 580,
+            },
+            { x: 1004.6, y: 533.3 },
+          ],
           id: "7-6",
         },
-          {
+        {
           source: { cell: "6", port: "port6" },
           target: { cell: "4", port: "port4" },
           router: { args: { offset: 32, direction: "H" }, name: "metro" },
-          vertices: [{ x: 1088, y: 530 },{ x: 1088, y: 610 },{ x: 1095, y: 610},{x: 1095, y: 533},],
+          vertices: [
+            { x: 1088, y: 530 },
+            { x: 1088, y: 610 },
+            { x: 1095, y: 610 },
+            { x: 1095, y: 533 },
+          ],
           id: "4-6",
         },
         {
           source: { cell: "4", port: "port6" },
           target: { cell: "1", port: "port4" },
           router: { args: { offset: 32, direction: "H" }, name: "metro" },
-          vertices: [{x: 1190, y: 536},{ x: 1190, y: 625},{ x: 1395, y: 625 },{ x: 1395, y: 568 },],
+          vertices: [
+            { x: 1190, y: 536 },
+            { x: 1190, y: 625 },
+            { x: 1395, y: 625 },
+            { x: 1395, y: 568 },
+          ],
           id: "4-1",
         },
-          {
+        {
           source: { cell: "10", port: "port4" },
           target: { cell: "7", port: "port7" },
           router: { args: { offset: 32, direction: "H" }, name: "metro" },
-          vertices: [{x: 950, y: 587}],
+          vertices: [{ x: 950, y: 587 }],
           id: "10-7",
-          attrs: {
-            line: {
-              stroke: "rgba(202, 216, 14)",
-              strokeDasharray: 0,
-              strokeWidth: 1,
-              strokeDasharray: 5,
-              targetMarker: null,
-              style: {
-                animation: "ant-line 30s infinite linear",
-                lineWidth: 5,
-              },
-            },
-            outline: {
-              stroke: "#456d89",
-              strokeWidth: 2,
-            },
-          }
         },
         {
           source: { cell: "9", port: "port4" },
           target: { cell: "1", port: "port6" },
           router: { args: { offset: 32, direction: "H" }, name: "metro" },
-          vertices: [{x: 1427.2, y: 620.8}],
+          vertices: [{ x: 1427.2, y: 620.8 }],
           id: "9-1",
-          attrs: {
-            line: {
-              stroke: "rgba(202, 216, 14)",
-              strokeDasharray: 0,
-              strokeWidth: 1,
-              strokeDasharray: 5,
-              targetMarker: null,
-              style: {
-                animation: "ant-line 30s infinite linear",
-                lineWidth: 5,
-              },
-            },
-            outline: {
-              stroke: "#456d89",
-              strokeWidth: 2,
-            },
-          },
         },
       ];
+      const createEdge = () => {
+        edgeList.forEach((item, index) => {
+          graph.addEdge({
+            id: item.id,
+            shape: "double-edge",
+            source: item.source, // 源节点和链接桩 ID
+            target: item.target,
+            router: item.router,
+            attrs:
+              item.id == "10-7" || item.id == "9-1"
+                ? {
+                    line: {
+                      stroke: "rgba(202, 216, 14)",
+                      // strokeDasharray: 0,
+                      strokeWidth: 1,
+                      targetMarker: null,
+                      strokeDasharray: 5,
+                      style: {
+                        animation: "ant-line 30s infinite linear",
+                        lineWidth: 5,
+                      },
+                    },
+                    outline: {
+                      stroke: "#456d89",
+                      strokeWidth: 2,
+                    },
+                  }
+                : {
+                    line: {
+                      stroke:
+                        index < 3 ? "rgba(7,149,237)" : "rgba(0, 188, 212)",
+                      strokeDasharray: 0,
+                      targetMarker: null,
+                      strokeDasharray: 5,
+                      style: {
+                        animation: "ant-line 30s infinite linear",
+                        lineWidth: 5,
+                      },
+                    },
+                    outline: {
+                      stroke: "#456d89",
+                      strokeWidth: 7,
+                    },
+                  },
+            vertices: item.vertices,
+          });
+        });
+      };
+      const runEdge = () => {
+        activeIds.forEach((activeId) => {
+          currentNode = changeNode.find((item) => item.id == activeId);
+          currentNode.setData({ active: true });
+        });
+        // activeEdges.forEach((edge) => {
+        //   currentEdge = changeEdge.find((item) => item.id == edge);
+        //   currentEdge.attr("line", {
+        //     strokeDasharray: 5,
+        //     style: {
+        //       animation: "ant-line 30s infinite linear",
+        //       lineWidth: 5,
+        //     },
+        //   });
+        // });
+      };
       switch (currentId) {
         case "0":
-          activeIds.forEach((activeId)=>{
-            currentNode = changeNode.find((item) => item.id == activeId);
-            currentNode.setData({ active: true });
-          })
-          edgeList.forEach((item, index) => {
-            graph.addEdge({
-              id: item.id,
-              shape: "double-edge",
-              source: item.source, // 源节点和链接桩 ID
-              target: item.target,
-              router: item.router,
-              attrs:item.attrs?item.attrs: {
-                line: {
-                  stroke: index<3?"rgba(7,149,237)":"rgba(0, 188, 212)",
-                  strokeDasharray: 0,
-                  strokeWidth: 3,
-                  strokeDasharray: 5,
-                  targetMarker: null,
-                  style: {
-                    animation: "ant-line 30s infinite linear",
-                    lineWidth: 5,
-                  },
-                },
-                outline: {
-                  stroke: "#456d89",
-                  strokeWidth: 7,
-                },
-              },
-              vertices: item.vertices,
-            });
-          });
-          // activeEdges.forEach((edge)=>{
-          //   currentEdge = changeEdge.find((item) => item.id == edge);
-          //   currentEdge.attr("line", {
-          //   stroke: "#1890ff",
-
-          // });
-          // })
-
+          break;
+        case "99":
+          createEdge();
+          runEdge();
           break;
       }
       // let currentNum = null;

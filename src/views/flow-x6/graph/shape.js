@@ -8,6 +8,8 @@ import Flowanimate2 from "../components/Flowanimate/animateTwo.vue"
 import FlowButton from "../components/FlowButton";
 import FlowText from "../components/FlowText";
 import GifComponents from "../components/GifComponents"
+import FlowTable from "../components/FlowTable"
+import FlowChart from "../components/FlowChart"
 
 // // 使用 Graph.registerVueComponent(...) 方法将 Vue 组件注册到系统中。
 // Graph.registerVueComponent(
@@ -494,7 +496,42 @@ export const FlowTextRect = Graph.registerNode("flow-Text-rect", {
   ],
   ports: { ...basicPorts },
 });
-
+//表格组件
+export const FlowTables = Graph.registerNode("flow-table", {
+  inherit: "vue-shape",
+  width: 300,
+  height: 300,
+  component: {
+    // 使用 render函数来创建组件
+    render: (h) =>
+      h(FlowTable, {
+        on: {
+          // 监听 FlowNode组件触发的事件，获取传递出来的数据
+          myEvent: (data) => {
+            this.handleMyEvent(data);
+          },
+        },
+      }),
+  },
+});
+//表格组件
+export const FlowCharts = Graph.registerNode("flow-chart", {
+  inherit: "vue-shape",
+  width: 300,
+  height: 300,
+  component: {
+    // 使用 render函数来创建组件
+    render: (h) =>
+      h(FlowChart, {
+        on: {
+          // 监听 FlowNode组件触发的事件，获取传递出来的数据
+          myEvent: (data) => {
+            this.handleMyEvent(data);
+          },
+        },
+      }),
+  },
+});
 // 节点组
 export class NodeGroup extends Node {
   collapsed = true;
